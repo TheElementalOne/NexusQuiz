@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Gestión de Empleados</title>
+    <link rel="stylesheet" href="../css/empleados.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Gestión de Empleados</h1>
+
+        <!-- Formulario de creación -->
+        <form id="formEmpleado" class="formulario">
+
+            <div class="container-warning">
+                <h5>Los campos marcados con * son obligatorios</h5>
+            </div>
+
+            <div class="form-group form-group-nombre-empleado">
+                <div class="title-nombre-empleado">
+                    <span>Nombre-completo *</span>
+                </div>
+                <input type="text" id="crear_nombre_empleado" name="nombre" maxlength="250" placeholder=" " required />
+            </div>
+            <div class="form-group form-group-email-empleado">
+                <div class="title-email-empleado">
+                    <span>Correo Electronico *</span>
+                </div>
+                <input type="email" id="crear_email_empleado" name="email" maxlength="250" placeholder=" " required />
+            </div>
+            <div class="form-group form-group-sexo">
+                <div class="title-sexo">
+                    <span>Sexo *</span>
+                </div>
+                <div class="sex-orientation">
+                    <span><input type="radio" name="sexo" value="M" required /> Masculino</span>
+                    <span><input type="radio" name="sexo" value="F" required /> Femenino</span>
+                </div>
+
+            </div>
+            <div class="form-group form-group-area-empleado">
+                <div class="title-area-empleado">
+                    <span>Area *</span>
+                </div>
+
+                <select id="crear_area_empleado" name="area_id" required>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group form-group-descripcion-empleado">
+                <div class="title-descripcion-empleado">
+                    <span>Descripcion *</span>
+                </div>
+                <textarea id="crear_descripcion_empleado" name="descripcion" maxlength="500"
+                    placeholder="Descripcion de la experiencia del empleado" required></textarea>
+            </div>
+            <div class="form-group form-group-boletin-empleado">
+                <input type="checkbox" id="crear_boletin_empleado" name="boletin" />
+                <span>Deseo recibir boletín informativo</span>
+            </div>
+            <div class="form-group checkbox-container">
+                <div class="title-checkbox">
+                    <span>Roles *</span>
+                </div>
+                <div class="content-checkbox" id="contenedor_roles_empleado">
+                    <!-- Checkboxes dinámicos -->
+                </div>
+            </div>
+            <div class="button-form-create">
+                <button type="submit">Guardar</button>
+            </div>
+        </form>
+
+        <!-- Tabla de empleados -->
+        <section>
+            <h2>Lista de Empleados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Sexo</th>
+                        <th>Area</th>
+                        <th>Boletín</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaEmpleados">
+                    <!-- Contenido cargado por JS -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Modal de edición -->
+    <div id="modalEditar">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Empleado</h2>
+                <button id="cerrarModalEditar" onclick="empleadoManager.cerrarModal()">×</button>
+            </div>
+            <form id="formEditarEmpleado">
+                <input type="hidden" name="id" id="editar_id_empleado"/>
+
+                <div class="form-group form-group-nombre-empleado">
+                    <input type="text" id="editar_nombre_empleado" name="nombre" maxlength="250" placeholder=" "
+                        required />
+                    <label for="editar_nombre_empleado">Nombre completo</label>
+                </div>
+                <div class="form-group form-group-email-empleado">
+                    <input type="email" id="editar_email_empleado" name="email" maxlength="250" placeholder=" "
+                        required />
+                    <label for="editar_email_empleado">Correo electrónico</label>
+                </div>
+                <div class="form-group form-group-sexo">
+                    <div class="title-sexo">
+                        <label>Sexo</label>
+                    </div>
+                    <div class="sex-orientation">
+                        <span><input type="radio" name="editar_sexo" value="M" /> Masculino</span>
+                        <span><input type="radio" name="editar_sexo" value="F" /> Femenino</span>
+                    </div>
+                </div>
+                <div class="form-group form-group-area-empleado">
+                    <select id="editar_area_empleado" name="area_id" required>
+                        <option value="">Seleccione un área</option>
+                    </select>
+                </div>
+                <div class="form-group form-group-descripcion-empleado">
+                    <textarea id="editar_descripcion_empleado" name="descripcion" maxlength="500" placeholder=" "
+                        required></textarea>
+                    <label for="editar_descripcion_empleado">Descripción</label>
+                </div>
+                <div class="form-group form-group-boletin-empleado-modal">
+                    <input type="checkbox" id="editar_boletin_empleado" name="boletin" />
+                    <span>Desea recibir boletín informativo</span>
+                </div>
+                <div class="form-group checkbox-container">
+                    <div class="title-checkbox-modal">
+                        <span>Roles</span>
+                    </div>
+                    <div id="editar_contenedor_roles_empleado" class="content-checkbox">
+                        <!-- Checkboxes dinámicos para edición -->
+                    </div>
+                </div>
+
+                <div class="acciones">
+                    <button type="button" onclick="empleadoManager.cerrarModal()">Cancelar</button>
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../Js/empleados.js"></script>
+</body>
+
+</html>
