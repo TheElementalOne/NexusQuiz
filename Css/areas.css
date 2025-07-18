@@ -1,55 +1,342 @@
+/* Importa una fuente de Google Fonts para un mejor diseño */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Estilos generales del cuerpo */
 body {
-  font-family: Arial, sans-serif;
-  margin: 2rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6; /* Un gris claro para el fondo */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Para que el footer se quede abajo si lo añades */
 }
 
+/* Encabezados */
+h1 {
+    color: #2c3e50; /* Azul oscuro */
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 2.5em;
+    border-bottom: 2px solid #3498db; /* Línea de resalte */
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #34495e; /* Gris más oscuro */
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+/* Estilos para formularios */
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 500px; /* Ancho máximo para formularios */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 400;
+}
+
+form input[type="text"] {
+    width: calc(100% - 20px); /* Ajusta el ancho para padding */
+    padding: 12px 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+form button {
+    background-color: #3498db; /* Azul vibrante */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button[type="submit"] {
+    background-color: #28a745; /* Verde para guardar */
+}
+
+form button[type="submit"]:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+form button[type="button"] {
+    background-color: #6c757d; /* Gris para cancelar */
+}
+
+form button[type="button"]:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Estilos de tabla */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para la tabla */
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden; /* Para que los bordes redondeados se apliquen a todo */
 }
 
-th,
-td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
-th {
-  background-color: #f2f2f2;
+table th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-input,
-button {
-  margin: 0.5rem 0;
-  padding: 5px;
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Rayas para mejor legibilidad */
 }
 
+table tbody tr:hover {
+    background-color: #e9f5fe; /* Resaltar fila al pasar el cursor */
+}
 
-/*MODAL CSS*/
+/* Estilos para los botones de acción en la tabla */
+table .acciones button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-right: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+table .acciones .btn-editar {
+    background-color: #ffc107; /* Amarillo para editar */
+    color: #333;
+}
+
+table .acciones .btn-editar:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+
+table .acciones .btn-eliminar {
+    background-color: #dc3545; /* Rojo para eliminar */
+    color: white;
+}
+
+table .acciones .btn-eliminar:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Estilos del modal (para la edición) */
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Permanece en la misma posición al desplazarse */
+    z-index: 1000; /* Se superpone a todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilitar desplazamiento si es necesario */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
+    background-color: #ffffff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px; /* Ancho máximo para el contenido del modal */
+    position: relative;
+    box-sizing: border-box;
+    animation: fadeIn 0.3s ease-out; /* Animación de entrada */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.modal-content input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
 .modal-buttons {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
+    text-align: right;
+    margin-top: 25px;
+}
+
+.modal-buttons button {
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-size: 0.95em;
+}
+
+.modal-buttons button[type="submit"] {
+    background-color: #28a745; /* Verde para guardar en el modal */
+}
+
+.modal-buttons button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.modal-buttons button[type="button"] {
+    background-color: #6c757d; /* Gris para cancelar en el modal */
+}
+
+.modal-buttons button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    form input[type="text"],
+    form button {
+        width: 100%; /* Botones y campos de texto ocupan todo el ancho */
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block; /* La tabla se convierte en bloques para pantallas pequeñas */
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px; /* Oculta la cabecera original */
+        left: -9999px;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    table td {
+        border: none;
+        position: relative;
+        padding-left: 50%; /* Espacio para la etiqueta */
+        text-align: right;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    table td::before {
+        content: attr(data-label); /* Usa el atributo data-label para mostrar la cabecera */
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    table .acciones {
+        text-align: center;
+        padding-left: 0; /* Elimina el padding si se ajusta el td */
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Espacio entre botones */
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+        margin-top: 10px;
+    }
+
+    table .acciones button {
+        width: auto; /* Los botones de acción no deben ocupar todo el ancho */
+        flex-grow: 1; /* Permite que los botones crezcan para llenar el espacio */
+        max-width: 120px; /* Limita el tamaño de los botones */
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-buttons {
+        text-align: center;
+    }
+
+    .modal-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Ocultar "Cancelar" en el formulario de creación en pantallas pequeñas */
+@media (max-width: 768px) {
+    #formArea button[type="button"] {
+        display: none;
+    }
 }
