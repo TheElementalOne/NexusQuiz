@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD Áreas</title>
+  <link rel="stylesheet" href="../Css/areas.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <h1>Gestion de Areas</h1>
+
+  <h3>Crear Area</h3>
+  <form id="formArea">
+    <label>Nombre:</label>
+    <input type="text" id="crear_nombre_area" name="nombre" maxlength="250" required>
+    <button type="submit">Guardar</button>
+    <button type="button" onclick="cancelarEdicion()">Cancelar</button>
+  </form>
+
+
+  <h3>Lista de Areas</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaAreas"></tbody>
+  </table>
+
+  <script src="../js/areas.js"></script>
+  <div id="modalEditar" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h3>Editar Area</h3>
+      <form id="formEditarArea">
+        <input type="hidden" id="editarId">
+        <label>Nuevo nombre:</label>
+        <input type="text" id="editar_nombre_area" name="nombre" maxlength="250" required>
+        <div class="modal-buttons">
+          <button type="submit">Guardar</button>
+          <button type="button" onclick="areaManager.cerrarModal()">Cancelar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
