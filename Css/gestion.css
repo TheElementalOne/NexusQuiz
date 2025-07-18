@@ -1,0 +1,540 @@
+/* Importa una fuente de Google Fonts para un mejor diseño */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    /* Combinamos las fuentes */
+    background-color: #f4f7f6;
+    /* Un gris claro para el fondo */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+h1 {
+    color: #2c3e50;
+    /* Azul oscuro */
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 2.5em;
+    border-bottom: 2px solid #3498db;
+    /* Línea de resalte (color de áreas) */
+    padding-bottom: 10px;
+}
+
+h2 {
+    /* Estilo para títulos dentro de modales */
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h3 {
+    color: #34495e;
+    /* Gris más oscuro */
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+/* --- Estilos para Pestañas (Tabs) --- */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tab-button {
+    flex-grow: 1;
+    /* Para que ocupen el espacio disponible */
+    padding: 15px 25px;
+    border: none;
+    background-color: #f0f0f0;
+    color: #555;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    position: relative;
+    /* Para la línea activa */
+}
+
+.tab-button:hover {
+    background-color: #e6e6e6;
+}
+
+.tab-button.active {
+    background-color: #3498db;
+    /* Color activo (azul de áreas) */
+    color: white;
+    font-weight: 700;
+}
+
+/* Ocultar contenido de pestañas por defecto */
+.tab-content {
+    display: none;
+    padding-top: 20px;
+    /* Espacio para separar del selector de pestañas */
+    border-top: 1px solid #eee;
+    /* Línea divisoria */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- Estilos de Formularios --- */
+.formulario {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    margin-left: auto;
+    /* Para centrar si no está en flexbox */
+    margin-right: auto;
+}
+
+/* Campo flotante */
+.campo-flotante {
+    position: relative;
+    width: 100%;
+    margin-bottom: 25px;
+    /* Espacio entre campos flotantes */
+}
+
+.campo-flotante input {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding-top: 18px;
+    /* Espacio inicial para la etiqueta flotante */
+    padding-bottom: 6px;
+}
+
+.campo-flotante label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    /* Fondo para la etiqueta */
+    padding: 0 5px;
+    color: #999;
+    transition: 0.2s ease all;
+    pointer-events: none;
+    z-index: 1;
+    /* Asegura que la etiqueta esté sobre el input */
+}
+
+/* Estado flotante de la etiqueta */
+.campo-flotante input:focus+label,
+.campo-flotante input:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 8px;
+    font-size: 0.8em;
+    color: #007bff;
+    /* Color de foco (azul de roles) */
+    background-color: #f4f7f6;
+    /* Color de fondo del body para que se vea recortado */
+    padding: 0 5px;
+}
+
+.campo-flotante input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+
+/* --- Estilos de Botones --- */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #3498db;
+    /* Azul principal (áreas) */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
+    /* Evita que el botón se encoja */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-guardar {
+    background-color: #28a745;
+    /* Verde para guardar */
+}
+
+.btn-guardar:hover {
+    background-color: #218838;
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+    /* Gris para cancelar */
+}
+
+.btn-cancelar:hover {
+    background-color: #5a6268;
+}
+
+/* Ajuste de los botones del formulario para que estén en línea si el ancho lo permite */
+.formulario button[type="submit"],
+.formulario button[type="button"] {
+    display: inline-block;
+    width: auto;
+    /* Ancho automático por defecto */
+}
+
+/* Asegura que los botones del formulario se apilen en pantallas pequeñas */
+@media (max-width: 500px) {
+
+    .formulario button[type="submit"],
+    .formulario button[type="button"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+        /* Espacio entre botones apilados */
+    }
+
+    /* Ocultar el botón cancelar del formulario de crear en móvil */
+    #formArea .btn-cancelar,
+    #formRol .btn-cancelar {
+        display: none;
+    }
+}
+
+
+/* --- Estilos de Tabla --- */
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: auto;
+    /* Para centrar la tabla */
+    margin-right: auto;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+table th {
+    background-color: #3498db;
+    /* Color de cabecera de tabla (azul de áreas) */
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #e9f5fe;
+}
+
+/* Estilos para los botones de acción en la tabla */
+table .acciones {
+    white-space: nowrap;
+    /* Evita que los botones se envuelvan */
+    display: flex;
+    gap: 8px;
+    /* Espacio entre los botones */
+    justify-content: flex-start;
+}
+
+table .acciones .btn-editar {
+    background-color: #ffc107;
+    /* Amarillo para editar */
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+table .acciones .btn-editar:hover {
+    background-color: #e0a800;
+}
+
+table .acciones .btn-eliminar {
+    background-color: #dc3545;
+    /* Rojo para eliminar */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+table .acciones .btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+
+/* --- Estilos del Modal --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal[style*="display: flex"] {
+    /* Cuando el display es flex, mostrarlo */
+    opacity: 1;
+}
+
+.modal-contenido {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-sizing: border-box;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal[style*="display: flex"] .modal-contenido {
+    transform: translateY(0);
+}
+
+.modal-contenido h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.modal-botones {
+    text-align: right;
+    margin-top: 25px;
+    display: flex;
+    /* Para controlar la disposición de los botones */
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-botones .btn {
+    flex-grow: 1;
+    /* Permite que crezcan para ocupar el espacio */
+    max-width: 150px;
+    /* Limita el tamaño en pantallas grandes */
+}
+
+.gestion-empleados {
+    margin-bottom: 20px;
+}
+
+.gestion-empleados-button {
+    border: none;
+    border-radius: 5px;
+    flex-grow: 1;
+    padding: 15px 25px;
+    background-color: #218cff;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Ya tienes una transición, ¡perfecto! */
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.gestion-empleados-button:hover {
+    background-color: #004896; /* Un azul más oscuro */
+    color: #e0e0e0; /* Un blanco ligeramente más grisáceo */
+}
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .container {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    /* Pestañas responsivas */
+    .tabs {
+        flex-direction: column;
+        /* Apila los botones de las pestañas */
+    }
+
+    .tab-button {
+        border-radius: 0;
+        /* Elimina bordes redondeados al apilar */
+        margin-bottom: 1px;
+        /* Pequeño espacio entre botones apilados */
+    }
+
+    .tab-button:first-child {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .tab-button:last-child {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        margin-bottom: 0;
+    }
+
+
+    /* Tabla responsiva - Estilo de bloques */
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        padding: 10px 15px;
+    }
+
+    table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        display: block;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    table td.acciones {
+        text-align: center;
+        padding-left: 10px;
+        justify-content: center;
+        flex-direction: row;
+        gap: 10px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+        margin-top: 10px;
+    }
+
+    table td.acciones .btn-editar,
+    table td.acciones .btn-eliminar {
+        flex-grow: 1;
+        max-width: 120px;
+    }
+
+    /* Modal en pantallas pequeñas */
+    .modal-contenido {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .modal-botones {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .modal-botones .btn {
+        width: 100%;
+        max-width: none;
+    }
+}

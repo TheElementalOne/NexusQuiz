@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Áreas y Roles</title>
+    <link rel="stylesheet" href="../css/gestion.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/bd916cda58.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gestión de Áreas y Roles</h1>
+
+        <div class="gestion-empleados">
+            <a href="empleados.html" style="text-decoration: none;">
+                <button class="gestion-empleados-button">
+                    Gestión de Empleados
+                </button>
+            </a>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="areas">Gestión de Áreas</button>
+            <button class="tab-button" data-tab="roles">Gestión de Roles</button>
+        </div>
+
+        <div id="areas-tab-content" class="tab-content active">
+            <h3>Crear Área</h3>
+            <form id="formArea" class="formulario">
+                <div class="campo-flotante">
+                    <input type="text" id="crear_nombre_area" name="nombre" maxlength="250" required placeholder=" ">
+                    <label for="crear_nombre_area">Nombre del Área</label>
+                </div>
+                <button type="submit" class="btn btn-guardar">Guardar Área</button>
+                <button type="button" class="btn btn-cancelar" onclick="areaManager.cancelarEdicion()">Cancelar</button>
+            </form>
+
+            <h3>Lista de Áreas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaAreas"></tbody>
+            </table>
+        </div>
+
+        <div id="roles-tab-content" class="tab-content">
+            <h3>Crear Rol</h3>
+            <form id="formRol" class="formulario">
+                <div class="campo-flotante">
+                    <input type="text" id="crear_nombre_rol" name="nombre" maxlength="250" required placeholder=" ">
+                    <label for="crear_nombre_rol">Nombre del Rol</label>
+                </div>
+                <button type="submit" class="btn btn-guardar">Crear Rol</button>
+                <button type="button" class="btn btn-cancelar" onclick="rolManager.cancelarEdicion()">Cancelar</button>
+            </form>
+
+            <h3>Lista de Roles</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaRoles"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalEditarArea" class="modal">
+        <div class="modal-contenido">
+            <h2>Editar Área</h2>
+            <form id="formEditarArea">
+                <input type="hidden" id="editarIdArea">
+                <div class="campo-flotante">
+                    <input type="text" id="editar_nombre_area" name="nombre" maxlength="250" required placeholder=" ">
+                    <label for="editar_nombre_area">Nuevo nombre</label>
+                </div>
+                <div class="modal-botones">
+                    <button type="submit" class="btn btn-guardar">Guardar</button>
+                    <button type="button" class="btn btn-cancelar" onclick="areaManager.cerrarModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalEditarRol" class="modal">
+        <div class="modal-contenido">
+            <h2>Editar Rol</h2>
+            <form id="formEditarRol">
+                <input type="hidden" id="editarIdRol">
+                <div class="campo-flotante">
+                    <input type="text" id="editar_nombre_rol" name="nombre" maxlength="250" required placeholder=" ">
+                    <label for="editar_nombre_rol">Nuevo nombre</label>
+                </div>
+                <div class="modal-botones">
+                    <button type="submit" class="btn btn-guardar">Guardar</button>
+                    <button type="button" class="btn btn-cancelar" onclick="rolManager.cerrarModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../Js/gestion.js"></script>
+</body>
+
+</html>

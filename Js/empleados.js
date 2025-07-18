@@ -55,17 +55,21 @@ class EmpleadoManager {
           <td title="${emp.AREA}">${areaDisplay}</td>
           <td>${emp.BOLETIN == 1 ? "Sí" : "No"}</td>
           <td>
-            <button class="btn-editar" data-id="${emp.ID}"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn-editar" data-id="${
+              emp.ID
+            }"><i class="fa-solid fa-pen-to-square"></i></button>
           </td>
           <td>
-            <button class="btn-eliminar" data-id="${emp.ID}"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn-eliminar" data-id="${
+              emp.ID
+            }"><i class="fa-solid fa-trash-can"></i></button>
           </td>
         </tr>
       `;
     });
     document.querySelectorAll(".btn-editar").forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        const id = e.target.dataset.id;
+        const id = e.currentTarget.dataset.id;
         this.abrirModal(id);
       });
     });
@@ -73,7 +77,7 @@ class EmpleadoManager {
     // Nuevo: Listener para el botón de eliminar
     document.querySelectorAll(".btn-eliminar").forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        const id = e.target.dataset.id;
+        const id = e.currentTarget.dataset.id;
         this.eliminarEmpleado(id);
       });
     });

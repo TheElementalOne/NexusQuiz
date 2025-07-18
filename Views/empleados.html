@@ -13,8 +13,17 @@
     <main class="container">
         <h1>Gestión de Empleados</h1>
 
+        <div class="gestion-empleados">
+            <a href="gestion.html" style="text-decoration: none;">
+                <button class="gestion-empleados-button">
+                    Gestion de Roles y Areas
+                </button>
+            </a>
+        </div>
+
         <!-- Formulario de creación -->
         <form id="formEmpleado" class="formulario">
+
 
             <div class="container-warning">
                 <h5>Los campos marcados con * son obligatorios</h5>
@@ -106,7 +115,7 @@
                 <button id="cerrarModalEditar" onclick="empleadoManager.cerrarModal()">×</button>
             </div>
             <form id="formEditarEmpleado">
-                <input type="hidden" name="id" id="editar_id_empleado"/>
+                <input type="hidden" name="id" id="editar_id_empleado" />
 
                 <div class="form-group form-group-nombre-empleado">
                     <input type="text" id="editar_nombre_empleado" name="nombre" maxlength="250" placeholder=" "

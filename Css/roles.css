@@ -9,15 +9,21 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f4f4f4;
   padding: 30px;
+  /* Flexbox para centrar contenido verticalmente si es una página corta */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Ocupa al menos el alto de la vista */
 }
 
 .container {
   max-width: 900px;
-  margin: auto;
+  margin: auto; /* Mantiene el centrado horizontal */
   background: #fff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Asegura que el contenedor ocupe el ancho disponible */
 }
 
 h1, h2 {
@@ -25,6 +31,23 @@ h1, h2 {
   margin-bottom: 20px;
   color: #333;
 }
+
+h1 {
+  font-size: 2.5em;
+  border-bottom: 2px solid #007bff; /* Línea de resalte */
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+h3 { /* Añadido para consistencia */
+    color: #34495e;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.8em;
+}
+
 
 /* Formulario */
 .formulario {
@@ -48,6 +71,8 @@ h1, h2 {
   border-radius: 6px;
   outline: none;
   background-color: transparent;
+  /* Asegura que el input se vea bien con el efecto flotante */
+  box-sizing: border-box;
 }
 
 .campo-flotante label {
@@ -62,37 +87,59 @@ h1, h2 {
   pointer-events: none;
 }
 
+/* Estado flotante de la etiqueta */
 .campo-flotante input:focus + label,
 .campo-flotante input:not(:placeholder-shown) + label {
-  top: -8px;
-  left: 8px;
+  top: -8px; /* Mueve la etiqueta hacia arriba */
+  left: 8px; /* Ligeramente a la derecha */
   font-size: 12px;
   color: #007bff;
+  /* Fondo para la etiqueta flotante */
+  background-color: #f4f4f4; /* O el color de fondo del cuerpo si es más adecuado */
+  z-index: 1; /* Asegura que esté sobre el borde del input */
+}
+/* Asegura que el placeholder no se muestre si la etiqueta está flotando */
+.campo-flotante input:not(:placeholder-shown) {
+    padding-top: 18px; /* Ajusta el padding para el texto cuando la etiqueta está arriba */
+    padding-bottom: 6px;
+}
+.campo-flotante input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
 }
 
-/* Botones */
+
+/* Botones generales */
 .btn {
   padding: 10px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #007bff; /* Color principal */
   color: #fff;
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .btn:hover {
   background-color: #0056b3;
+  transform: translateY(-2px); /* Pequeño efecto al pasar el ratón */
 }
 
-.btn.cancelar {
-  background-color: #ccc;
-  color: #333;
+/* Botones específicos de acción */
+.btn-guardar { /* Usado en crear y editar */
+    background-color: #28a745; /* Verde para guardar */
+}
+.btn-guardar:hover {
+    background-color: #218838;
 }
 
-.btn.cancelar:hover {
-  background-color: #999;
+.btn-cancelar { /* Usado en formularios y modal */
+    background-color: #6c757d; /* Gris para cancelar */
+    color: #fff; /* Asegura que el texto sea blanco */
+}
+.btn-cancelar:hover {
+    background-color: #5a6268;
 }
 
 /* Tabla */
@@ -100,6 +147,10 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden; /* Para que los bordes redondeados se apliquen a todo */
 }
 
 table thead {
@@ -111,18 +162,62 @@ table th, table td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  box-sizing: border-box; /* Incluye padding en el ancho */
+}
+table th {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-table td button {
-  margin-right: 8px;
-  padding: 6px 10px;
-  font-size: 14px;
-  cursor: pointer;
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Rayas para mejor legibilidad */
 }
+
+table tbody tr:hover {
+    background-color: #e9f5fe; /* Resaltar fila al pasar el cursor */
+}
+
+/* Botones dentro de la tabla */
+table td.acciones { /* Asegura que esta clase se use en el td de acciones */
+    white-space: nowrap; /* Evita que los botones se envuelvan */
+    display: flex; /* Permite mejor alineación de botones */
+    gap: 8px; /* Espacio entre los botones */
+    justify-content: flex-start; /* Alinea al inicio si hay espacio */
+}
+
+table td.acciones .btn-editar,
+table td.acciones .btn-eliminar {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+table td.acciones .btn-editar {
+    background-color: #ffc107; /* Amarillo para editar */
+    color: #333;
+}
+table td.acciones .btn-editar:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+
+table td.acciones .btn-eliminar {
+    background-color: #dc3545; /* Rojo para eliminar */
+    color: white;
+}
+table td.acciones .btn-eliminar:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
 
 /* Modal */
 .modal {
-  display: none;
+  display: none; /* Oculto por defecto */
   position: fixed;
   z-index: 999;
   left: 0; top: 0;
@@ -130,6 +225,12 @@ table td button {
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
+  /* Animación */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.modal[style*="display: flex"] { /* Cuando el display es flex, mostrarlo */
+    opacity: 1;
 }
 
 .modal-contenido {
@@ -137,8 +238,22 @@ table td button {
   padding: 30px;
   border-radius: 10px;
   max-width: 500px;
-  width: 100%;
+  width: 90%; /* Ajuste para pantallas más pequeñas */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  position: relative; /* Para posibles elementos absolutos internos */
+  /* Animación de entrada */
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+.modal[style*="display: flex"] .modal-contenido {
+    transform: translateY(0);
+}
+
+.modal-contenido h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    text-align: center;
 }
 
 .modal-botones {
@@ -146,4 +261,119 @@ table td button {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
+}
+/* Ajuste de botones en el modal */
+.modal-botones .btn {
+    padding: 10px 18px;
+    font-size: 0.95em;
+    flex-grow: 1; /* Permite que los botones crezcan en móvil */
+    max-width: 150px; /* Limita el tamaño en pantallas grandes */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    body {
+        padding: 15px; /* Reduce el padding general en pantallas pequeñas */
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .container {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .formulario {
+        gap: 10px; /* Reduce el espacio entre campos en móvil */
+    }
+
+    .formulario .btn {
+        width: 100%; /* Botones de formulario ocupan todo el ancho */
+        margin-bottom: 5px; /* Espacio entre botones */
+    }
+    .formulario .btn.btn-cancelar {
+        display: none; /* Oculta el botón Cancelar en el formulario de creación */
+    }
+
+    /* Tabla responsiva - Estilo de bloques */
+    table, thead, tbody, th, td, tr {
+        display: block; /* La tabla se convierte en bloques */
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px; /* Oculta la cabecera original */
+        left: -9999px;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        padding: 10px 15px; /* Añade padding a cada fila */
+    }
+
+    table td {
+        border: none;
+        position: relative;
+        padding-left: 50%; /* Espacio para la etiqueta del data-label */
+        text-align: right;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        display: block; /* Cada celda como un bloque */
+    }
+
+    table td::before {
+        content: attr(data-label); /* Muestra el contenido del data-label */
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    table td.acciones {
+        text-align: center;
+        padding-left: 10px; /* Ajusta el padding para los botones */
+        justify-content: center; /* Centra los botones */
+        flex-direction: row; /* Asegura que los botones estén en fila */
+        gap: 10px; /* Espacio entre botones */
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+        margin-top: 10px;
+    }
+
+    table td.acciones .btn-editar,
+    table td.acciones .btn-eliminar {
+        flex-grow: 1; /* Permite que los botones de acción se estiren */
+        max-width: 120px; /* Limita su tamaño */
+    }
+
+    /* Modal en pantallas pequeñas */
+    .modal-contenido {
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .modal-botones {
+        flex-direction: column; /* Botones del modal apilados */
+        gap: 8px;
+    }
+    .modal-botones .btn {
+        width: 100%; /* Ocupan todo el ancho */
+        max-width: none;
+    }
 }
